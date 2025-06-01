@@ -1,7 +1,10 @@
 import requests
 import pandas as pd
 from bs4 import BeautifulSoup
-from itertools import product
+import logging
+
+logging.basicConfig(level=logging.INFO, filename="console.log", format="%(asctime)s - %(levelname)s = %(message)s")
+
  
 DOMINIO = 'https://quotes.toscrape.com'
 CABECALHO = {'User-Agent': 'Mozilla/5.0'}
@@ -19,17 +22,22 @@ def conteudo_pagina(url, cabecalho):
 
 def analisa_citacoes():
     #FAZ A BUSCA POR LINHA
+    logging.info(f'Iniciando Analise')
     citacoes = []
     pagina = 1
 
     #VALIDA SE TEM DADOS NA PAGINA
     while True:
+        logging.info(f'Acessando a pagina {pagina}')
         url = f'{DOMINIO}/page/{pagina}/'
         dados_dominio = conteudo_pagina(url, CABECALHO) 
-        linhas = dados_dominio.find_all('div', class_='quote')
 
+        linhas = dados_dominio.find_all('div', class_='quote')
         if not linhas:
+            logging.info(f'Nenhuma citacao encontrada!')
             break
+
+        logging.info(f'Foram encontradas {len(linhas)} citacoes na pagina {pagina}')    
 
         for linha in linhas:
             nome_autor = linha.find(class_='author').text
@@ -54,6 +62,7 @@ def analisa_citacoes():
             citacoes.append(citacao)
         
         pagina += 1
+        logging.info(f'Total de citacoes analisadas: {len(citacoes)}')
 
     return citacoes
 
