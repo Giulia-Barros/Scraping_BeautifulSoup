@@ -94,21 +94,22 @@ def analisa_citacoes():
     return citacoes, list(autores.values())
 
 # Execução
-citacoes, autores = analisa_citacoes()
+if __name__ == "__main__":
+    citacoes, autores = analisa_citacoes()
 
-# Traz os resultados de forma alinhada, uma dataframe para cada função
-df_citacoes = pd.DataFrame(citacoes)
-df_autores = pd.DataFrame(autores)
+    # Traz os resultados de forma alinhada, uma dataframe para cada função
+    df_citacoes = pd.DataFrame(citacoes)
+    df_autores = pd.DataFrame(autores)
 
-# Faz a exportação para o CSV
-df_citacoes.to_csv('citacoes.csv', index=False, encoding='utf-8-sig')
-df_autores.to_csv('autores.csv', index=False, encoding='utf-8-sig')
+    # Faz a exportação para o CSV
+    df_citacoes.to_csv('citacoes.csv', index=False, encoding='utf-8-sig')
+    df_autores.to_csv('autores.csv', index=False, encoding='utf-8-sig')
 
 
-# Exibe os resultados 5 primeiros resultados de cada função
-print("Citações Detalhadas:")
-print(df_citacoes.head())
+    # Exibe os resultados 5 primeiros resultados de cada função
+    print("Citações Detalhadas:")
+    print(df_citacoes.head())
 
-print("\nAutores Detalhados:")
-print(df_autores.head())
+    print("\nAutores Detalhados:")
+    print(df_autores.head())
 
