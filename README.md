@@ -58,4 +58,13 @@ pip install requests beautifulsoup pandas customtkinter pyautogui
 ```bash
 python interface.py
 ```
+### Melhorias Futuras
+- **Exportação para outros formatos**
+
+- **Filtro por autor ou palavra-chave**
+
+- **Busca detalhada referente a cada Tag disponível**
+
+- **Agendamento de raspagens automáticas**
+
 
