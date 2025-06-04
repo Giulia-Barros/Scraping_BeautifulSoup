@@ -13,6 +13,7 @@ Scraping_BeautifulSoup/
 ├── console.log # Log das execuções
 ├── citacoes.csv # (Gerado após exportação)
 ├── autores.csv # (Gerado após exportação)
+├── print.png # (Gerado após a execução)
 └── README.md # Documentação do projeto
 
 ## 🔧 Tecnologias Utilizadas
