@@ -26,7 +26,7 @@ interface.geometry('700x700')
 def printTela():
     printt = pyautogui.screenshot()
     printt.save("print_.png")
-    aviso.configure(text="Print salvo com sucesso.")
+    aviso.configure(text="Print salvo com sucesso!\nCaso queira tirar um novo print, clique no botão Salvar Novo Print")
 
 # Executa a raspagem e atualiza as áreas de texto
 def executarRaspagem():
@@ -58,6 +58,9 @@ def executarRaspagem():
 
     aviso.configure(text="Dados extraídos com sucesso!")
 
+    # Aguarda 1 segundo e tira print
+    interface.after(1000, printTela)
+
 # Exporta para CSV
 def exportarCSV():
     citacoes_csv = getattr(interface, "citacoes_data", [])
@@ -82,8 +85,8 @@ botao_execucao.pack(pady=10)
 botao_exportar = ctk.CTkButton(interface, text='Exportar para CSV', command=exportarCSV)
 botao_exportar.pack(pady=5)
 
-# Botão para tirar screenshot
-botao_screenshot = ctk.CTkButton(interface, text='Salvar Print', command=printTela)
+# Botão para tirar print manual
+botao_screenshot = ctk.CTkButton(interface, text='Salvar Novo Print', command=printTela)
 botao_screenshot.pack(pady=10)
 
 # Avisos
