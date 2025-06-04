@@ -16,7 +16,7 @@ Scraping_BeautifulSoup/
 ├── print.png # (Gerado após a execução)
 └── README.md # Documentação do projeto
 
-## 🔧 Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 - Python 3.x
 - `requests`
