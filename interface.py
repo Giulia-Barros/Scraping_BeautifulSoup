@@ -9,27 +9,24 @@
 # |* Descricao  | Interface para executar e visualizar os resultados do programa    *|
 # |             | Quetos.                                                            |
 # |----------------------------------------------------------------------------------|
-# /***********************************************************************************
-# |----------------------------------------------------------------------------------|
-# |* Programa   | Interface                                                         *|
-# |----------------------------------------------------------------------------------|
-# |* Autor      | Giulia Barros                                                     *|
-# |----------------------------------------------------------------------------------|
-# |* Utilização | Execução e visualização do programa Quotes                        *|
-# |----------------------------------------------------------------------------------|
-# |* Descrição  | Interface para executar e visualizar os resultados do programa    *|
-# |             | Quotes.                                                           *|
-# |----------------------------------------------------------------------------------|
 import customtkinter as ctk
 import threading
 import pandas as pd
+import pyautogui
 from quotes import analisa_citacoes
+
 
 # Configuração da aparência
 ctk.set_appearance_mode('dark')
 interface = ctk.CTk()
 interface.title('Raspagem de Dados - Quotes to Scrape')
 interface.geometry('700x700')
+
+# Função para tirar o print da tela
+def printTela():
+    printt = pyautogui.screenshot()
+    printt.save("print_.png")
+    aviso.configure(text="Print salvo com sucesso.")
 
 # Executa a raspagem e atualiza as áreas de texto
 def executarRaspagem():
@@ -62,7 +59,7 @@ def executarRaspagem():
     aviso.configure(text="Dados extraídos com sucesso!")
 
 # Exporta para CSV
-def exportar_csv():
+def exportarCSV():
     citacoes_csv = getattr(interface, "citacoes_data", [])
     autores_csv = getattr(interface, "autores_data", [])
 
@@ -74,16 +71,20 @@ def exportar_csv():
         aviso.configure(text="Nenhum dado para exportar. Execute a raspagem primeiro.")
 
 # Executa em segundo plano
-def chamar_thread():
+def chamarThread():
     threading.Thread(target=executarRaspagem).start()
 
 # Botão para executar
-botao_execucao = ctk.CTkButton(interface, text='Executar Raspagem', command=chamar_thread)
+botao_execucao = ctk.CTkButton(interface, text='Executar Raspagem', command=chamarThread)
 botao_execucao.pack(pady=10)
 
 # Botão para exportar
-botao_exportar = ctk.CTkButton(interface, text='Exportar para CSV', command=exportar_csv)
+botao_exportar = ctk.CTkButton(interface, text='Exportar para CSV', command=exportarCSV)
 botao_exportar.pack(pady=5)
+
+# Botão para tirar screenshot
+botao_screenshot = ctk.CTkButton(interface, text='Salvar Print', command=printTela)
+botao_screenshot.pack(pady=10)
 
 # Avisos
 aviso = ctk.CTkLabel(interface, text="")
@@ -99,6 +100,3 @@ resultadosAutores.pack(pady=10)
 
 # Loop principal
 interface.mainloop()
-
-
-
