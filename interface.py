@@ -33,7 +33,7 @@ def executarRaspagem():
     aviso.configure(text="Por favor aguarde! Os dados estão sendo extraídos...")
 
     resultadosCitacoes.delete('0.0', 'end')
-    resultadosAutores.delete('0.0', 'end')
+    resultadosAutores.delete('0.0', 'end') 
 
     citacoes, autores = analisa_citacoes()
 
